@@ -98,9 +98,10 @@ class JujuMachineWidget(ContainerWidgetWrap):
         self.juju_machine_id_label = Text(label)
         self.cores_field = IntEdit('', str(cdict.get('cores', '')))
         connect_signal(self.cores_field, 'change', self.handle_cores_changed)
+        import ipdb;ipdb.set_trace()
         memval = cdict.get('mem', '')
         if memval != '':
-            memval = memval / 1024
+            memval = self._format_constraint(memval) / 1024
         self.mem_field = Edit('', str(memval))
         connect_signal(self.mem_field, 'change', self.handle_mem_changed)
         diskval = cdict.get('root-disk', '')
